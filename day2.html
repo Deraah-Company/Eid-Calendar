@@ -37,8 +37,12 @@
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: 20px;
             box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        @media (min-width: 768px) {
+            .glass { border-radius: 24px; }
         }
 
         .card-3d {
@@ -48,24 +52,36 @@
         }
 
         .card-3d:hover {
-            transform: translateY(-10px) rotateX(4deg) rotateY(4deg);
+            transform: translateY(-5px) rotateX(2deg) rotateY(2deg);
             border-color: var(--primary-color);
-            box-shadow: 0 20px 40px rgba(200, 16, 98, 0.3), inset 0 0 0 1px rgba(200, 16, 98, 0.5);
+            box-shadow: 0 15px 30px rgba(200, 16, 98, 0.3), inset 0 0 0 1px rgba(200, 16, 98, 0.5);
             background: rgba(255, 255, 255, 0.12);
         }
 
+        @media (min-width: 768px) {
+            .card-3d:hover {
+                transform: translateY(-10px) rotateX(4deg) rotateY(4deg);
+                box-shadow: 0 20px 40px rgba(200, 16, 98, 0.3), inset 0 0 0 1px rgba(200, 16, 98, 0.5);
+            }
+        }
+
         .btn-control {
-            padding: 10px 15px;
+            padding: 8px 10px;
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.1);
             color: var(--accent-white);
             transition: all 0.3s;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             font-size: 0.9rem;
             border: 1px solid rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
+        }
+
+        @media (min-width: 768px) {
+            .btn-control { padding: 10px 15px; }
         }
 
         .btn-control:hover {
@@ -110,11 +126,15 @@
 
         .fullscreen-overlay {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px;
+            gap: 6px;
             z-index: 100;
+        }
+
+        @media (min-width: 768px) {
+            .fullscreen-overlay { top: 20px; right: 20px; gap: 10px; }
         }
 
         .active-day-btn {
@@ -123,46 +143,72 @@
             box-shadow: 0 0 15px rgba(200, 16, 98, 0.6);
         }
 
-        /* Logos */
+        /* Logos Responsiveness */
         .main-logos {
             position: absolute;
-            top: 20px;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        .main-logos img { height: 35px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+
+        .footer-logos {
+            position: absolute;
+            bottom: 20px;
             left: 20px;
             display: flex;
             gap: 15px;
             z-index: 100;
         }
-        .main-logos img { height: 50px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .footer-logos img { height: 40px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
 
-        .footer-logos {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            display: flex;
-            gap: 20px;
-            z-index: 100;
+        @media (min-width: 768px) {
+            .main-logos { top: 20px; left: 20px; gap: 15px; }
+            .main-logos img { height: 50px; }
+            .footer-logos { bottom: 30px; left: 30px; gap: 20px; }
+            .footer-logos img { height: 60px; }
         }
-        .footer-logos img { height: 60px; width: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+
         .hidden-on-home { display: none !important; }
 
         /* Grid specific for Summary */
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: 1fr; /* 1 column on mobile */
+            gap: 1rem;
             width: 100%;
-            max-height: 70vh; 
+            max-height: 60vh;
+            overflow-y: auto; /* scrollable on mobile */
+            padding-right: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on desktop */
+                gap: 1.5rem;
+                max-height: 70vh; 
+            }
         }
         
         .summary-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
             transition: all 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .summary-item {
+                border-radius: 16px;
+                padding: 1rem 1.5rem;
+                gap: 1rem;
+            }
         }
         
         .summary-item:hover {
@@ -170,6 +216,11 @@
             border-color: var(--primary-color);
             transform: translateX(-5px);
         }
+
+        /* Custom Scrollbar for Summary */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
 
     </style>
 </head>
@@ -183,29 +234,29 @@
 
     <!-- Controls -->
     <div class="fullscreen-overlay">
-        <button class="btn-control" onclick="goHome()">
+        <button class="btn-control" onclick="goHome()" title="الرئيسية">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            <span>الرئيسية</span>
+            <span class="hidden md:inline">الرئيسية</span>
         </button>
-        <button class="btn-control" id="playBtn" onclick="toggleAutoPlay(event)">
+        <button class="btn-control" id="playBtn" onclick="toggleAutoPlay(event)" title="عرض تلقائي">
             <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <span id="playText">عرض تلقائي</span>
+            <span id="playText" class="hidden md:inline">عرض تلقائي</span>
         </button>
-        <button class="btn-control" onclick="toggleSummary(event)">
+        <button class="btn-control" onclick="toggleSummary(event)" title="الكل">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-            <span>الكل</span>
+            <span class="hidden md:inline">الكل</span>
         </button>
-        <button class="btn-control" onclick="toggleFullScreen(event)">
+        <button class="btn-control" onclick="toggleFullScreen(event)" title="ملء الشاشة">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            <span>ملء الشاشة</span>
+            <span class="hidden md:inline">ملء الشاشة</span>
         </button>
     </div>
 
     <!-- Main Container -->
-    <main class="flex-grow flex items-center justify-center p-6 relative w-full h-full">
+    <main class="flex-grow flex items-center justify-center p-4 md:p-6 relative w-full h-full">
         
-        <!-- Dynamic Number Circle with Progress Ring (Left Side) -->
-        <div id="numberCircleContainer" class="hidden-on-home absolute left-12 top-1/2 transform -translate-y-1/2 z-50 flex-col items-center hidden md:flex">
+        <!-- Dynamic Number Circle with Progress Ring (Left Side) - Hidden on Mobile to save space -->
+        <div id="numberCircleContainer" class="hidden-on-home absolute left-12 top-1/2 transform -translate-y-1/2 z-50 flex-col items-center hidden lg:flex">
             <div class="relative w-28 h-28 flex items-center justify-center">
                 <!-- SVG Progress Ring -->
                 <svg class="absolute inset-0 w-full h-full transform -rotate-90 drop-shadow-[0_0_15px_rgba(200,16,98,0.5)]" viewBox="0 0 100 100">
@@ -224,41 +275,41 @@
 
         <!-- Home Screen (Single Card) -->
         <div id="homeScreen" class="flex flex-col items-center justify-center w-full max-w-2xl slide-enter z-10" style="display: flex;">
-            <div class="glass card-3d p-14 text-center w-full" onclick="startPresentation()">
-                <div class="w-20 h-1 bg-[var(--primary-color)] mx-auto mb-8 rounded-full"></div>
-                <h2 class="text-6xl font-bold mb-4 title-text">أجندة الفعالية</h2>
-                <p class="text-3xl mb-12 text-white font-bold" style="color: var(--text-gold);">الثلاثاء، 5 مايو 2026</p>
-                <div class="inline-flex items-center justify-center gap-4 px-10 py-4 rounded-full bg-[var(--primary-color)] text-white text-xl font-bold hover:bg-white hover:text-[var(--primary-color)] transition-all">
-                    ابدأ العرض <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rotate-180"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+            <div class="glass card-3d p-8 md:p-14 text-center w-full" onclick="startPresentation()">
+                <div class="w-12 md:w-20 h-1 bg-[var(--primary-color)] mx-auto mb-6 md:mb-8 rounded-full"></div>
+                <h2 class="text-4xl md:text-6xl font-bold mb-3 md:mb-4 title-text">أجندة الفعالية</h2>
+                <p class="text-xl md:text-3xl mb-8 md:mb-12 text-white font-bold" style="color: var(--text-gold);">الثلاثاء، 5 مايو 2026</p>
+                <div class="inline-flex items-center justify-center gap-3 md:gap-4 px-6 py-3 md:px-10 md:py-4 rounded-full bg-[var(--primary-color)] text-white text-lg md:text-xl font-bold hover:bg-white hover:text-[var(--primary-color)] transition-all">
+                    ابدأ العرض <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 md:w-6 md:h-6"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </div>
             </div>
         </div>
 
         <!-- Presentation Slide -->
         <div id="presentationScreen" class="w-full max-w-5xl slide-enter z-10" style="display: none;">
-            <div class="glass p-16 text-center relative overflow-hidden">
+            <div class="glass p-8 md:p-16 text-center relative overflow-hidden">
                 <div class="progress-bar" id="progressBar"></div>
-                <div id="slideContent" class="py-12">
-                    <!-- إطار فخم للوقت بخط معقول ومتوازن -->
-                    <div class="inline-block px-8 py-4 rounded-3xl border border-[rgba(200,16,98,0.3)] bg-[rgba(200,16,98,0.1)] mb-8 shadow-[0_0_20px_rgba(200,16,98,0.15)]">
-                        <h3 id="slideTime" class="time-text text-4xl md:text-5xl font-mono tracking-widest m-0" dir="ltr"></h3>
+                <div id="slideContent" class="py-8 md:py-12">
+                    <!-- إطار فخم للوقت -->
+                    <div class="inline-block px-4 py-2 md:px-8 md:py-4 rounded-2xl md:rounded-3xl border border-[rgba(200,16,98,0.3)] bg-[rgba(200,16,98,0.1)] mb-6 md:mb-8 shadow-[0_0_20px_rgba(200,16,98,0.15)]">
+                        <h3 id="slideTime" class="time-text text-2xl md:text-5xl font-mono tracking-widest m-0" dir="ltr"></h3>
                     </div>
-                    <h1 id="slideTitleAr" class="title-text text-5xl md:text-7xl font-bold mb-6 leading-tight"></h1>
-                    <h2 id="slideTitleEn" class="text-2xl md:text-3xl subtitle-text italic font-light tracking-wide"></h2>
+                    <h1 id="slideTitleAr" class="title-text text-4xl md:text-7xl font-bold mb-4 md:mb-6 leading-tight"></h1>
+                    <h2 id="slideTitleEn" class="text-xl md:text-3xl subtitle-text italic font-light tracking-wide"></h2>
                 </div>
             </div>
         </div>
 
-        <!-- Summary Screen (Grid without scroll) -->
+        <!-- Summary Screen -->
         <div id="summaryScreen" class="w-full max-w-7xl slide-enter z-10 flex-col items-center justify-center h-full" style="display: none;">
-            <div class="glass p-10 w-full rounded-[30px]">
-                <div class="text-center mb-8">
-                    <h2 class="text-4xl font-bold mb-2 title-text" id="summaryTitle">أجندة الفعالية</h2>
-                    <div class="w-24 h-1 bg-[var(--primary-color)] mx-auto mt-4 mb-2 rounded-full"></div>
-                    <p class="text-xl font-bold text-[var(--text-gold)]" id="summaryDate"></p>
+            <div class="glass p-6 md:p-10 w-full rounded-[20px] md:rounded-[30px] flex flex-col items-center max-h-full">
+                <div class="text-center mb-6 md:mb-8 shrink-0">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2 title-text" id="summaryTitle">أجندة الفعالية</h2>
+                    <div class="w-16 md:w-24 h-1 bg-[var(--primary-color)] mx-auto mt-3 md:mt-4 mb-2 rounded-full"></div>
+                    <p class="text-lg md:text-xl font-bold text-[var(--text-gold)]" id="summaryDate"></p>
                 </div>
                 
-                <div id="summaryList" class="summary-grid">
+                <div id="summaryList" class="summary-grid w-full">
                     <!-- Items populated by JS -->
                 </div>
             </div>
@@ -332,8 +383,8 @@
             const circle = document.getElementById('numberCircle');
             const progressCircle = document.getElementById('progressCircle');
 
-            // حساب نسبة الدائرة (بتملى مع تقدمك في اليوم)
-            const circumference = 289; // 2 * PI * r (r=46)
+            // حساب نسبة الدائرة
+            const circumference = 289; 
             const progressPercent = (currentIndex + 1) / agendaItems.length;
             const dashoffset = circumference - (progressPercent * circumference);
             progressCircle.style.strokeDashoffset = dashoffset;
@@ -381,7 +432,7 @@
 
         function toggleSummary(e) {
             e.stopPropagation();
-            stopAutoPlay(); // تأكيد إيقاف العرض التلقائي عند الدخول لشاشة الكل
+            stopAutoPlay();
             showSummary();
         }
 
@@ -389,16 +440,17 @@
             const list = document.getElementById('summaryList');
             document.getElementById('summaryDate').innerText = agendaDate;
             
+            // Responsive text sizes added inside the JS template map
             list.innerHTML = agendaItems.map((item, idx) => `
                 <div class="summary-item">
-                    <div class="text-[var(--primary-color)] text-xl font-bold opacity-50 shrink-0 w-6">
+                    <div class="text-[var(--primary-color)] text-lg md:text-xl font-bold opacity-50 shrink-0 w-5 md:w-6">
                         ${String(idx + 1).padStart(2, '0')}
                     </div>
                     <div class="flex-grow">
-                        <div class="text-lg font-bold text-white leading-tight">${item.ar}</div>
-                        <div class="text-xs text-white/50">${item.en}</div>
+                        <div class="text-base md:text-lg font-bold text-white leading-tight">${item.ar}</div>
+                        <div class="text-[10px] md:text-xs text-white/50 mt-1">${item.en}</div>
                     </div>
-                    <div class="time-text text-base font-mono shrink-0" dir="ltr">${item.time}</div>
+                    <div class="time-text text-sm md:text-base font-mono shrink-0" dir="ltr">${item.time}</div>
                 </div>
             `).join('');
 
